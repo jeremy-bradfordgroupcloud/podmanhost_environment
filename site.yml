@@ -1,0 +1,110 @@
+version: '3.1'
+
+services:
+
+  jeremybradfordsr.com:
+    image: wordpress
+    restart: always
+    ports:
+      - 5150:5150
+    environment:
+      WORDPRESS_DB_HOST: lin-10942-6709-mysql-primary.servers.linodedb.net
+      WORDPRESS_DB_USER: jeremybradfordsr
+      WORDPRESS_DB_PASSWORD: Thugitout09
+      WORDPRESS_DB_NAME: jeremybradfordsr
+    volumes:
+      - wordpress_jeremybradfordsr:/var/www/html
+
+  bradfordgroup.cloud:
+    image: wordpress
+    restart: always
+    ports:
+      - 5151:5151
+    environment:
+      WORDPRESS_DB_HOST: lin-10942-6709-mysql-primary.servers.linodedb.net
+      WORDPRESS_DB_USER: bradfordgroup
+      WORDPRESS_DB_PASSWORD: Thugitout09
+      WORDPRESS_DB_NAME: bradfordgroup
+    volumes:
+      - wordpress_bradfordgroup:/var/www/html
+  
+  
+  bitwarden.bradfordgroup.cloud:
+    image: bitwarden
+    restart: always
+    ports:
+      - 8001:8001
+    environment:
+      WORDPRESS_DB_HOST: lin-10942-6709-mysql-primary.servers.linodedb.net
+      WORDPRESS_DB_USER: jeremybradfordsr
+      WORDPRESS_DB_PASSWORD: Thugitout09
+      WORDPRESS_DB_NAME: jeremybradfordsr
+    volumes:
+      - bitwarden:/var/www/html
+      
+   portainer.bradfordgroup.cloud:
+    image: bitwarden
+    restart: always
+    ports:
+      - 9443:9443
+    environment:
+    volumes:
+      - portainer:/data
+
+
+
+
+
+bitwarden.bradfordgroup.cloud:
+    image: bitwarden
+    restart: always
+    ports:
+      - 8001:8001
+    environment:
+      WORDPRESS_DB_HOST: lin-10942-6709-mysql-primary.servers.linodedb.net
+      WORDPRESS_DB_USER: jeremybradfordsr
+      WORDPRESS_DB_PASSWORD: Thugitout09
+      WORDPRESS_DB_NAME: jeremybradfordsr
+    volumes:
+      - bitwarden:/var/www/html
+
+ 
+ bitwarden.bradfordgroup.cloud:
+    image: bitwarden
+    restart: always
+    ports:
+      - 8001:8001
+    environment:
+      WORDPRESS_DB_HOST: lin-10942-6709-mysql-primary.servers.linodedb.net
+      WORDPRESS_DB_USER: jeremybradfordsr
+      WORDPRESS_DB_PASSWORD: Thugitout09
+      WORDPRESS_DB_NAME: jeremybradfordsr
+    volumes:
+      - bitwarden:/var/www/html
+      
+      
+
+ 
+
+volumes:
+  jeremybradfordsr.com:
+  bradfordgroup.cloud
+  bitwarden.bradfordgroup.cloud
+
+ proxy:
+    # Pathwae!
+    image: quay.io/pathwae/proxy
+    ports:
+    - "80:80"
+    - "443:443"
+    - "8080:8080"
+    environment:
+      CONFIG: |
+        jeremybradfordsr.com:
+          # foocontainer port 5000
+          to: http://jeremybradfordsr.com:5150
+          force_ssl: true
+        brsdfordgroup.cloud:
+          # foocontainer port 5000
+          to: http://bradfordgroup.cloud:5151
+          force_ssl: true
