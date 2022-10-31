@@ -13,7 +13,9 @@ services:
       WORDPRESS_DB_PASSWORD: Thugitout09!_com
       WORDPRESS_DB_NAME: jeremybradfordsr
     volumes:
-      - wordpress_jeremybradfordsr_com:/var/www/html
+      - type: bind
+        source: /root/podman_mount/jeremybradfordsr_com
+        target: /var/www/html
 
   bradfordgroup_cloud:
     image: wordpress
@@ -26,7 +28,9 @@ services:
       WORDPRESS_DB_PASSWORD: Thugitout09!
       WORDPRESS_DB_NAME: bradfordgroup_cloud
     volumes:
-      - wordpress_bradfordgroup_cloud:/var/www/html
+      - type: bind
+        source: /root/podman_mount/bradfordgroup_cloud
+        target: /var/www/html
       
     mariadb:
     image: mariadb
