@@ -2,31 +2,31 @@ version: '3.1'
 
 services:
 
-  jeremybradfordsr.com:
+  jeremybradfordsr_com:
     image: wordpress
     restart: always
     ports:
       - 5150:5150
     environment:
       WORDPRESS_DB_HOST: lin-10942-6709-mysql-primary.servers.linodedb.net
-      WORDPRESS_DB_USER: jeremybradfordsr
-      WORDPRESS_DB_PASSWORD: Thugitout09
+      WORDPRESS_DB_USER: jeremybradfordsr_com
+      WORDPRESS_DB_PASSWORD: Thugitout09!_com
       WORDPRESS_DB_NAME: jeremybradfordsr
     volumes:
-      - wordpress_jeremybradfordsr:/var/www/html
+      - wordpress_jeremybradfordsr_com:/var/www/html
 
-  bradfordgroup.cloud:
+  bradfordgroup_cloud:
     image: wordpress
     restart: always
     ports:
       - 5151:5151
     environment:
       WORDPRESS_DB_HOST: lin-10942-6709-mysql-primary.servers.linodedb.net
-      WORDPRESS_DB_USER: bradfordgroup
-      WORDPRESS_DB_PASSWORD: Thugitout09
-      WORDPRESS_DB_NAME: bradfordgroup
+      WORDPRESS_DB_USER: bradfordgroup_cloud
+      WORDPRESS_DB_PASSWORD: Thugitout09!
+      WORDPRESS_DB_NAME: bradfordgroup_cloud
     volumes:
-      - wordpress_bradfordgroup:/var/www/html
+      - wordpress_bradfordgroup_cloud:/var/www/html
   
   
   bitwarden.bradfordgroup.cloud:
@@ -50,11 +50,7 @@ services:
     environment:
     volumes:
       - portainer:/data
-
-
-
-
-
+      
 bitwarden.bradfordgroup.cloud:
     image: bitwarden
     restart: always
@@ -82,13 +78,10 @@ bitwarden.bradfordgroup.cloud:
     volumes:
       - bitwarden:/var/www/html
       
-      
-
- 
 
 volumes:
-  jeremybradfordsr.com:
-  bradfordgroup.cloud
+  jeremybradfordsr_com:
+  bradfordgroup_cloud
   bitwarden.bradfordgroup.cloud
 
  proxy:
